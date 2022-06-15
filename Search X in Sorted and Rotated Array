@@ -1,0 +1,43 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+int search(vector<int> arr,int x) // x is element to search
+{
+    int s=0;
+    int n=arr.size();
+    int e=n-1;
+    int mid=0;
+    while(s<=e)
+    {
+        mid=(s+e)/2;
+        if(arr[mid]==x)
+        {
+            return mid;
+
+        }
+        if(arr[mid]>x)// must lie in list1
+        {
+            if(x>=arr[s] and x <= arr[mid])
+            e=mid-1;
+            else
+            s=mid+1;
+        }
+        else
+        {
+            if(x >=arr[mid] and x <= arr[e])
+            s=mid+1;
+            else
+            e=mid-1;
+        }
+        
+    }
+    return -1;
+}
+int main() {
+    vector<int>  v={10,12,14,15,0,1,2,3,4};
+
+    cout<<search(v,15);
+
+    return 0;
+
+}
