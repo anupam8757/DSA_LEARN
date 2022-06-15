@@ -1,0 +1,42 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+float search(int n,int p) // x is element to search
+{
+    int s=0;
+    int e=n;
+    float  ans=0;
+    while(s<=e)
+    {
+        int mid=(s+e)/2;
+        if(mid*mid > n)
+        {
+            e=mid-1;
+        }
+        if(mid*mid <= n)
+        {
+        s=mid+1;
+        ans=mid;
+        }
+
+    }
+   float inc=0.1;
+   for(int i=0;i<p;i++)// linaer search for place
+   {
+       while(ans*ans<=n)
+       {
+           ans+=inc;
+       }
+       ans-=inc;
+       inc=inc/10;
+   }
+return ans;
+}
+int main() {
+    int n,p;
+    cin>>n>>p;
+    cout<<search(n,p);
+
+    return 0;
+
+}
