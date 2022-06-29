@@ -1,0 +1,66 @@
+#include <iostream>
+
+#include<vector>
+
+using namespace std;
+
+void printsubseqeunce(int idx,vector<int> &v,int arr[],int n,int s,int sum)
+
+{
+
+    if(idx==n)
+
+    {
+
+      if(s==sum)
+
+      {
+
+        for(auto it:v)
+
+        cout<<it<<" ";
+
+       
+
+        cout<<endl;
+
+      }
+
+    }
+
+    else
+
+    {
+
+        s+=arr[idx];
+
+        v.push_back(arr[idx]);
+
+ 
+
+        printsubseqeunce(idx+1,v,arr,n,s,sum);
+
+        v.pop_back();
+
+        s=s-arr[idx];
+
+        printsubseqeunce(idx+1,v,arr,n,s,sum);
+
+    }
+
+}
+
+int main() {
+
+    int arr[]={1,2,1};
+
+    int n=3,s=0;
+
+    vector<int> v;
+
+    printsubseqeunce(0,v,arr,n,s,2);
+
+    cout<<"Hello World!";
+
+return 0;
+}
