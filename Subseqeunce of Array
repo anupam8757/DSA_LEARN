@@ -1,0 +1,55 @@
+#include <iostream>
+
+#include<vector>
+
+using namespace std;
+
+void printsubseqeunce(int idx,vector<int> &v,int arr[],int n)
+
+{
+
+    if(idx==n)
+
+    {
+
+        for(auto it:v)
+
+        cout<<it<<" ";
+
+        if(v.size()==0)
+
+        cout<<"{}";
+
+        cout<<endl;
+
+    }
+
+    else
+
+    {
+
+        v.push_back(arr[idx]);
+
+        printsubseqeunce(idx+1,v,arr,n);
+
+        v.pop_back();
+
+        printsubseqeunce(idx+1,v,arr,n);
+
+    }
+
+}
+
+int main() {
+
+    int arr[]={1,2,1};
+
+    int n=3;
+
+    vector<int> v;
+
+    printsubseqeunce(0,v,arr,n);
+
+    cout<<"Hello World!";
+
+}
