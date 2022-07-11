@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+bool canplace(int board[][20],int x,int y,int n)
+{
+    //check for column
+    for(int k=0;k<x;k++)
+    {
+        if(board[k][y]==1)
+        return false;
+    }
+    // check for left daignaol
+    int i=x,j=y;
+    while(i>=0 and j>=0)
+    {
+        if(board[i][j]==1)
+        return false;
+        i--;j--;
+    }
+    // check for right daigonal
+    i=x;
+    j=y;
+    while(i>=0 and j<n)
+    {
+        if(board[i][j]==1)
+        return false;
+        i--;j++;
+    }
+    return true;
+}
+void print(int n,int board[][20])
+{
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cout<<board[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+bool solveNquen(int i,int board[][20],int n)
+{
+    // base case
+    if(i==n)
+    {
+        print(n,board);
+        return true;
+    }
+    // recursive case
+    // try to put in each row
+    for(int j=0;j<n;j++)
+    {
+        if(canplace(board,i,j,n))
+        {
+            board[i][j]=1;
+            bool success=solveNquen(i+1,board,n);
+            if(success)
+            return true;
+            // backtrack
+            board[i][j]=0;
+        }
+    }
+    return false;
+}
+int main() {
+    int board[20][20]={0};
+    int n;
+    cin>>n;
+    solveNquen(0,board,n);
+    return 0;
+
+}
