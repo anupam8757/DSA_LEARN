@@ -59,6 +59,24 @@ node* recurivereverseLL(node *head)
     head->next=NULL;
     return smallhead;
 }
+void reverseLL(node* &head)
+{
+node *prev=NULL;
+node *current=head;
+node *temp;
+while(current!=NULL)
+{
+    temp=current->next;
+    current->next=prev;
+    prev=current;
+    current=temp;
+}
+head=prev;
+return ;
+
+
+    
+}
 int main() {
     cout<<"Hello World!";
     node* head=NULL;
@@ -71,8 +89,10 @@ int main() {
               printLL(head);
               insertatMiddle(head,40,6);
               printLL(head);
-             node* rev_head=recurivereverseLL(head);
-             printLL(rev_head);
+          //   node* rev_head=recurivereverseLL(head);
+          //  printLL(rev_head);
+            reverseLL(head);
+            printLL(head);
               return 0;
 
 }
